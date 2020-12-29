@@ -1,6 +1,6 @@
 import cv2
 import pytesseract
-def process_image(filename)
+def process_image(filename):
 
     img = cv2.imread(filename)
 
