@@ -3,7 +3,7 @@ from pytesseract import image_to_string
 
 def process_image(filename):
 
-    img = cv2.imread(filename, 0)
+    img = cv2.imread(filename, 0) #the 0 converts the image greyscale
     img = cv2.GaussianBlur(img, (5, 5), 0)
 
     #ret, img_binary = cv2.threshold(img, 100, 255, cv2.THRESH_BINARY)
