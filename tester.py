@@ -1,6 +1,7 @@
+#!/usr/bin/python
+import sys
 from image_processing import process_image
 import difflib #library for comparing differences
-
 
 TEXT_1 = """
 how to create
@@ -47,7 +48,7 @@ a loosened spirit brings!
 
 text_list = [TEXT_1, TEXT_2, TEXT_3, TEXT_4, TEXT_5]
 
-for i in range(5):
+def difference(i):
     print(text_list[i])
 
     processed = process_image('image' + str(i + 1) + ".jpg").lower().strip()
@@ -66,3 +67,9 @@ for i in range(5):
 
     print(processed + "\n")
     print("THERE ARE THIS MANY PROBLEMS IN TEXT_" + str(i + 1) + ": " + str(len(problem_list)))
+
+if len(sys.argv) == 2:
+    difference(int(sys.argv[1]) - 1)
+else:
+    for i in range(5):
+        difference(i)
