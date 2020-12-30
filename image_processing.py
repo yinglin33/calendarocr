@@ -7,14 +7,14 @@ def process_image(filename):
     cv2.namedWindow("image", cv2.WINDOW_NORMAL)
     cv2.resizeWindow('image', 600,600)
     img = cv2.imread(filename, 0) #the 0 converts the image greyscale
-    original_dimensions = img.shape
-    print(original_dimensions)
+    #original_dimensions = img.shape
+    #print(original_dimensions)
     #img = cv2.resize(img, (500, 500))
     #img = cv2.resize(img, original_dimensions)
     img = cv2.GaussianBlur(img, (5, 5), 0)
 
-    #ret, img_binary = cv2.threshold(img, 100, 255, cv2.THRESH_BINARY)
-    img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
+    ret, img = cv2.threshold(img, 100, 255, cv2.THRESH_BINARY)
+    #img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
 
     cv2.imshow("image", img) #display image in 600x600
     cv2.waitKey(0) #wait until next key is pressed to exit viewing
