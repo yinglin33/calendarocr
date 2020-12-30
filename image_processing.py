@@ -6,16 +6,25 @@ from PIL import Image
 
 def process_image(filename):
 
+    cv2.namedWindow("image", cv2.WINDOW_NORMAL)
+    cv2.resizeWindow('image', 600,600)
     img = cv2.imread(filename, 0) #the 0 converts the image greyscale
+    #original_dimensions = img.shape
+    #print(original_dimensions)
+    #img = cv2.resize(img, (500, 500))
+    #img = cv2.resize(img, original_dimensions)
     img = cv2.GaussianBlur(img, (5, 5), 0)
 
-    #ret, img_binary = cv2.threshold(img, 100, 255, cv2.THRESH_BINARY)
-    #img_adaptive = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
+    ret, img = cv2.threshold(img, 100, 255, cv2.THRESH_BINARY)
+    #img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
+
+    cv2.imshow("image", img) #display image in 600x600
+    cv2.waitKey(0) #wait until next key is pressed to exit viewing
 
     # Adding custom options
     custom_config = '--oem 3 --psm 6'
 
-#    return pytesseract.image_to_string(img, config=custom_config)
+    return image_to_string(img, config=custom_config)
 
 def convertToCalendar(cal):
     months_short=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
@@ -49,7 +58,6 @@ def convertToCalendar(cal):
         if cal.find(str(i)) != -1:
             Calendar = Calendar.replace(day=i)
             date_del_index = cal.find(str(i))
-    
 #    if date_delete_index >= 0 and Calendar.day > 9:
 #        cal = cal [date_delete_index : date_delete_index + 2 ]
 #    elif date_delete_index >=0 :
@@ -87,9 +95,6 @@ def convertToCalendar(cal):
         event_name=cal[0:date_del_index]
 
 
-
-
-
     return Calendar, event_name
 
 def find_n(bigstring, searchterm, n):
@@ -105,5 +110,5 @@ def find_n(bigstring, searchterm, n):
     return image_to_string(img, config=custom_config)
 
 
-#if __name__ == '__main__':
-#    print(process_image("image2.jpg"))
+if __name__ == '__main__':
+    print(process_image("image2.jpg"))
