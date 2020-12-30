@@ -96,6 +96,7 @@ def difference(i):
             problem_list.append('Add "{}" to position {}'.format(y[-1], x))
 
     print(processed + "\n")
+    print(problem_list)
     print("THERE ARE THIS MANY PROBLEMS IN TEXT_" + str(i + 1) + ": " + str(len(problem_list)))
 
 if len(sys.argv) == 2:
