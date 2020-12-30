@@ -57,26 +57,29 @@ Alexa's Party: November 19, 2021
 
 TEXT_8 = """
 Alexa's Party:
-November
-19,
+November 19,
 2021
 """
 
 TEXT_9 = """
 Alexa's Party:
-November
-19,
+November 19,
 2021
 """
 
 TEXT_10 = """
 Alexa's Party:
-November
-19,
+November 19,
 2021
 """
 
-text_list = [TEXT_1, TEXT_2, TEXT_3, TEXT_4, TEXT_5, TEXT_6, TEXT_7, TEXT_8, TEXT_9, TEXT_10]
+
+TEXT_11 = TEXT_8
+TEXT_12 = TEXT_9
+TEXT_13 = TEXT_10
+
+text_list = [TEXT_1, TEXT_2, TEXT_3, TEXT_4, TEXT_5, TEXT_6, TEXT_7, TEXT_8,
+            TEXT_9, TEXT_10, TEXT_11, TEXT_12, TEXT_13]
 
 def difference(i):
     print(text_list[i])
@@ -102,5 +105,5 @@ def difference(i):
 if len(sys.argv) == 2:
     difference(int(sys.argv[1]) - 1)
 else:
-    for i in range(10):
+    for i in range(13):
         difference(i)
