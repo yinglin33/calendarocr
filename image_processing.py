@@ -13,9 +13,9 @@ def process_image(filename):
     # Adding custom options
     custom_config = '--oem 3 --psm 6'
 
-    return pytesseract.image_to_string(img, config=custom_config)
+    return image_to_string(img, config=custom_config)
 
-def convertToCalendar(cal)
+def convertToCalendar(cal):
     months_short=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
     dates =[31,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     months_long = ["january","february","march","april","may","june","july","august","september","october","november","december" ]
@@ -47,7 +47,7 @@ def convertToCalendar(cal)
         if cal.find(i) != -1:
             Calendar.day = i
             date_del_index = cal.find(i)
-    
+
 #    if date_delete_index >= 0 and Calendar.day > 9:
 #        cal = cal [date_delete_index : date_delete_index + 2 ]
 #    elif date_delete_index >=0 :
@@ -73,16 +73,16 @@ def convertToCalendar(cal)
         Calendar.hour = 0;
     if time_index != -1 and time_index >= len(cal) and isnumeric(cal[time_index]):
         Calendar.hour += str(cal[time_index])
-    #how do we delete time 
+    #how do we delete time
     event_name = cal
-    
-    if time_index > -1 and len(cal[:time_index]) < len(cal)
+
+    if time_index > -1 and len(cal[:time_index]) < len(cal):
         event_name=cal[:time_index]
-    if cal_del_index > -1 and len(cal[:cal_del_index]) < len(cal)
+    if cal_del_index > -1 and len(cal[:cal_del_index]) < len(cal):
         event_name=cal[:cal_del_index]
-    if year_del_index > -1 and len(cal[:year_del_index]) < len(cal)
+    if year_del_index > -1 and len(cal[:year_del_index]) < len(cal):
         event_name=cal[:year_del_index]
-    if date_del_index > -1 and len(cal[:date_del_index]) < len(cal)
+    if date_del_index > -1 and len(cal[:date_del_index]) < len(cal):
         event_name=cal[:date_del_index]
 
 
