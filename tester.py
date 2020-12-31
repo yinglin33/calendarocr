@@ -9,8 +9,8 @@ Running the tester.py file:
         1: image number
         2: greyscale (0: without, 1: with)
         3: read (0: don't read, 1: read)
-        4: blur (1: averaging, 2: gaussian, 3: median, 4: bilateral filtering)
-        5: threshold (1: simple, 2: adaptive, 3: otsu's)
+        4: blur (0: no blur, 1: averaging, 2: gaussian, 3: median, 4: bilateral filtering)
+        5: threshold (0: no blur, 1: simple, 2: adaptive, 3: otsu's)
 
 IMPORTANT: greyscale is needed to apply threshold
 
