@@ -7,7 +7,7 @@ from PIL import Image
 links: https://www.freecodecamp.org/news/getting-started-with-tesseract-part-ii-f7f9a0899b3f/
 """
 
-def process_image(filename, greyscale=True, read=True, blur=None, threshold=None):
+def process_image(filename, greyscale=0, read=0, blur=None, threshold=None):
     """
     Returns an image processed into a string using preprocessing methods specified
     by the defined parameters.
@@ -15,6 +15,7 @@ def process_image(filename, greyscale=True, read=True, blur=None, threshold=None
     parameters:
         filename: name of file in str
         greyscale: boolean value
+        read: whether to read/display the file or not
         blur: 1 (averaging), 2 (gaussian), 3 (median), 4 (bilateral filtering)
         threshold: 1 (simple), 2 (adaptive), 3 (otsu's)
     """
