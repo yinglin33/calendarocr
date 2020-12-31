@@ -61,22 +61,8 @@ November 19,
 2021
 """
 
-TEXT_9 = """
-Alexa's Party:
-November 19,
-2021
-"""
+TEXT_9, TEXT_10, TEXT_11, TEXT_12, TEXT_13 = TEXT_8, TEXT_8, TEXT_8, TEXT_8, TEXT_8
 
-TEXT_10 = """
-Alexa's Party:
-November 19,
-2021
-"""
-
-
-TEXT_11 = TEXT_8
-TEXT_12 = TEXT_9
-TEXT_13 = TEXT_10
 
 text_list = [TEXT_1, TEXT_2, TEXT_3, TEXT_4, TEXT_5, TEXT_6, TEXT_7, TEXT_8,
             TEXT_9, TEXT_10, TEXT_11, TEXT_12, TEXT_13]
