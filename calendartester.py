@@ -11,7 +11,7 @@ def calendarTest():
     today = datetime.datetime.today()
     test1 = datetime.datetime(2020, 9, 30, 14, 0, 0 )
     test2 = datetime.datetime(2020, 10, 3, 21, 0, 0 )
-    test3 = datetime.datetime(2020, 9, 30, 18, 30, 0 )
+    test3 = datetime.datetime(2021, 11, 8, 18, 30, 0 )
     test4 = datetime.datetime(today.year, today.month, today.day, 0, 0, 0 )
     test.append(test1)
     test.append(test2)
@@ -25,7 +25,7 @@ def calendarTest():
     test_name.append("")
     
 
-    for i in range(len(testEvents)-2):
+    for i in range(len(testEvents)):
         temp1, temp2 = convertToCalendar(testEvents[i])
         print("Expected date: " + test[i].strftime("%m/%d/%Y, %H:%M")) 
         print("Expected name: " + test_name[i])
