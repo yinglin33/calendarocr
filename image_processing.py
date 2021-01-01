@@ -4,7 +4,9 @@ from pytesseract import image_to_string
 from PIL import Image
 import re
 """
-links: https://www.freecodecamp.org/news/getting-started-with-tesseract-part-ii-f7f9a0899b3f/
+links: https://www.freecodecamp.org/news/getting-started-with-tesseract-part-ii-f7f9a0899b3f/\\
+
+greyscale, gaussian, otsu's threshold
 """
 
 def process_image(filename, greyscale=0, read=0, blur=0, threshold=0):
@@ -29,7 +31,7 @@ def process_image(filename, greyscale=0, read=0, blur=0, threshold=0):
         img = cv2.imread(filename)
 
     if blur == 1:
-        img = cv.blur(img,(5,5))
+        img = cv2.blur(img,(5,5))
     elif blur == 2:
         img = cv2.GaussianBlur(img, (5, 5), 0)
     elif blur == 3:
@@ -133,6 +135,7 @@ def convertToCalendar(cal):
     if time_index != -1 and time_index < len(cal) and cal[time_index].isnumeric():
         #print("Time number:" + cal[time_index])
         Calendar = Calendar.replace(hour = (Calendar.hour + int(cal[time_index])))
+    
     #how do we delete time 
     day_index = -1
     for day in days:

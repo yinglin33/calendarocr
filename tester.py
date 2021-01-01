@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import sys
 from image_processing import process_image
 import difflib #library for comparing differences
