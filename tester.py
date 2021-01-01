@@ -3,6 +3,28 @@ import sys
 from image_processing import process_image
 import difflib #library for comparing differences
 
+"""
+Running the tester.py file:
+    Arguments:
+        1: image number
+        2: greyscale (0: without, 1: with)
+        3: read (0: don't read, 1: read)
+        4: blur (0: no blur, 1: averaging, 2: gaussian, 3: median, 4: bilateral filtering)
+        5: threshold (0: no blur, 1: simple, 2: adaptive, 3: otsu's)
+
+IMPORTANT: greyscale is needed to apply threshold
+
+Examples:
+$ python3 tester.py 6 1 1 2 2
+=> image 6, greyscale, read, gaussian, adaptive
+$ python3 tester.py 7
+=> image 7, no greyscale, don't read, no blur, no threshold
+$ python3 tester.py 1 1 1
+=> image 1, greyscale, read
+$ python3 tester.py 8 1 0 3 3
+=> image 8, greyscale, don't read, median, otsu's
+"""
+
 TEXT_1 = """
 how to create
 random, sample text
@@ -61,30 +83,17 @@ November 19,
 2021
 """
 
-TEXT_9 = """
-Alexa's Party:
-November 19,
-2021
-"""
+TEXT_9, TEXT_10, TEXT_11, TEXT_12, TEXT_13 = TEXT_8, TEXT_8, TEXT_8, TEXT_8, TEXT_8
 
-TEXT_10 = """
-Alexa's Party:
-November 19,
-2021
-"""
-
-
-TEXT_11 = TEXT_8
-TEXT_12 = TEXT_9
-TEXT_13 = TEXT_10
 
 text_list = [TEXT_1, TEXT_2, TEXT_3, TEXT_4, TEXT_5, TEXT_6, TEXT_7, TEXT_8,
             TEXT_9, TEXT_10, TEXT_11, TEXT_12, TEXT_13]
 
-def difference(i):
+def difference(i, greyscale, read, blur, threshold):
     print(text_list[i])
 
-    processed = process_image('image' + str(i + 1) + ".jpg").lower().strip()
+    processed = process_image('image' + str(i + 1) + ".jpg", greyscale, read,
+                blur, threshold).lower().strip()
     problem_list = []
 
     """
@@ -103,7 +112,15 @@ def difference(i):
     print("THERE ARE THIS MANY PROBLEMS IN TEXT_" + str(i + 1) + ": " + str(len(problem_list)))
 
 if len(sys.argv) == 2:
-    difference(int(sys.argv[1]) - 1)
-else:
+    difference(int(sys.argv[1]) - 1, 0, 0, None, None)
+elif len(sys.argv) == 3:
+    difference(int(sys.argv[1]) - 1, int(sys.argv[2]), 0, None, None)
+elif len(sys.argv) == 4:
+    difference(int(sys.argv[1]) - 1, int(sys.argv[2]), int(sys.argv[3]), None, None)
+elif len(sys.argv) == 5:
+    difference(int(sys.argv[1]) - 1, int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]), None)
+elif len(sys.argv) == 6:
+    difference(int(sys.argv[1]) - 1, int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]))
+else: #not finished yet
     for i in range(13):
         difference(i)
