@@ -4,7 +4,9 @@ from pytesseract import image_to_string
 from PIL import Image
 
 """
-links: https://www.freecodecamp.org/news/getting-started-with-tesseract-part-ii-f7f9a0899b3f/
+links: https://www.freecodecamp.org/news/getting-started-with-tesseract-part-ii-f7f9a0899b3f/\\
+
+greyscale, gaussian, otsu's threshold
 """
 
 def process_image(filename, greyscale=0, read=0, blur=0, threshold=0):
@@ -29,7 +31,7 @@ def process_image(filename, greyscale=0, read=0, blur=0, threshold=0):
         img = cv2.imread(filename)
 
     if blur == 1:
-        img = cv.blur(img,(5,5))
+        img = cv2.blur(img,(5,5))
     elif blur == 2:
         img = cv2.GaussianBlur(img, (5, 5), 0)
     elif blur == 3:
@@ -57,7 +59,7 @@ def convertToCalendar(cal):
     months_short=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
     dates =[31,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     months_long = ["january","february","march","april","may","june","july","august","september","october","november","december" ]
-    #todo account for leap years for feburary 
+    #todo account for leap years for feburary
     today = datetime.datetime.today()
     Calendar= datetime.datetime(today.year, today.month, today.day, 0, 0, 0)
     # the parameters are year, month, day, hour, minutes, seconds
@@ -112,7 +114,7 @@ def convertToCalendar(cal):
     if time_index != -1 and time_index < len(cal) and cal[time_index].isnumeric():
         print("Time number:" + cal[time_index])
         Calendar = Calendar.replace(hour = (Calendar.hour + int(cal[time_index])))
-    #how do we delete time 
+    #how do we delete time
 
     if time_index >= 0 and len(cal[:time_index]) < len(event_name):
         event_name=cal[0:time_index]
