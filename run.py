@@ -2,6 +2,7 @@ import sys
 from image_processing import process_image
 import os
 from convert_to_calendar import convertToCalendar
+from quickstart import makeCalendarEvent
 
 """
 Arguments:
@@ -21,4 +22,6 @@ else:
     print("Please enter the correct amount of arguments.")
     sys.exit()
 
-print(convertToCalendar(processed_string))
+date, name = convertToCalendar(processed_string)
+
+makeCalendarEvent(date, name)

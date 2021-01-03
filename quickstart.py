@@ -46,7 +46,6 @@ def makeCalendarEvent(date, eventName):
     'start': {
         'dateTime': date.isoformat(),
        # '2015-05-28T09:00:00-07:00'
-        'timeZone': 'America/Los_Angeles',
     },
     'end': {
         'dateTime': date.isoformat(),
@@ -58,5 +57,4 @@ def makeCalendarEvent(date, eventName):
     }
 
     event = service.events().insert(calendarId='primary', body=event).execute()
-    print 'Event created: %s' % (event.get('htmlLink'))
-
+    #print 'Event created: %s' % (event.get('htmlLink'))
