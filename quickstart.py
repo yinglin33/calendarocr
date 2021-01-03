@@ -49,21 +49,12 @@ def makeCalendarEvent(date, eventName):
         'timeZone': 'America/Los_Angeles',
     },
     'end': {
-        'dateTime': '2015-05-28T17:00:00-07:00',
+        'dateTime': date.isoformat(),
         'timeZone': 'America/Los_Angeles',
     },
-    'recurrence': [
-        'RRULE:FREQ=DAILY;COUNT=2'
-    ],
-    'attendees': [
-        {'email': 'lpage@example.com'},
-        {'email': 'sbrin@example.com'},
-    ],
   'reminders': {
-    'useDefault': False,
+    'useDefault': True,
     'overrides': [
-      {'method': 'email', 'minutes': 24 * 60},
-      {'method': 'popup', 'minutes': 10},
     ],
   },
 }
@@ -73,6 +64,3 @@ print 'Event created: %s' % (event.get('htmlLink'))
 
     print("event created")
 
-
-if __name__ == '__main__':
-    main()
