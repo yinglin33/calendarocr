@@ -52,15 +52,11 @@ def makeCalendarEvent(date, eventName):
         'dateTime': date.isoformat(),
         'timeZone': 'America/Los_Angeles',
     },
-  'reminders': {
-    'useDefault': True,
-    'overrides': [
-    ],
-  },
-}
+    'reminders': {
+        'useDefault': True,
+    },
+    }
 
-event = service.events().insert(calendarId='primary', body=event).execute()
-print 'Event created: %s' % (event.get('htmlLink'))
-
-    print("event created")
+    event = service.events().insert(calendarId='primary', body=event).execute()
+    print 'Event created: %s' % (event.get('htmlLink'))
 
