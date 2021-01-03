@@ -56,7 +56,7 @@ def process_image(filename, greyscale=0, read=0, blur=0, threshold=0):
     return image_to_string(img, config=custom_config)
 
 def convertToCalendar(cal):
-    months_short=[" jan"," feb"," mar"," apr"," may"," jun"," jul"," aug"," sep"," oct"," nov"," dec"]
+    months_short=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
     dates =[31,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     months_long = ["january","february","march","april","may","june","july","august","september","october","november","december" ]
     days = [" mon", " tues", " wed", " thur", " fri"]
@@ -72,10 +72,10 @@ def convertToCalendar(cal):
     cal_del_index = -1
     date_del_index= -1
     for i in range( len(possible_date_regex)-1, -1, -1):
-        print(i)
+        #print(i)
         x = re.findall(possible_date_regex[i], cal)
         if len(x) != 0:
-            print("match")
+           # print("match")
             cal_del_index = cal.find(x[0])
             date_del_index = cal.find(x[0])
             date_not_regex = False
