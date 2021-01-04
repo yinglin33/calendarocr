@@ -1,6 +1,7 @@
 import sys
 from image_processing import process_image
 import os
+from convert_to_calendar import convertToCalendar
 
 """
 Arguments:
@@ -8,11 +9,16 @@ Arguments:
     2: whether to delete the file or not (0: keep, 1: delete)
 """
 
+processed_string = ""
+
 if len(sys.argv) == 2:
-    print(process_image(sys.argv[1], 1, 1, 1, 3))
+    processed_string = process_image(sys.argv[1], 1, 1, 1, 3)
 elif len(sys.argv) == 3:
-    print(process_image(sys.argv[1], 1, 1, 1, 3))
+    processed_string = process_image(sys.argv[1], 1, 1, 1, 3)
     if (sys.argv[2] == "1"):
         os.remove(sys.argv[1])
 else:
     print("Please enter the correct amount of arguments.")
+    sys.exit()
+
+print(convertToCalendar(processed_string))
