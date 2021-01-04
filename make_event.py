@@ -6,9 +6,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-# If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-
 
 def makeCalendarEvent(date, eventName):
     """Shows basic usage of the Google Calendar API.
@@ -34,15 +32,11 @@ def makeCalendarEvent(date, eventName):
             pickle.dump(creds, token)
 
     service = build('calendar', 'v3', credentials=creds)
-    # Refer to the Python quickstart on how to setup the environment:
-    # https://developers.google.com/calendar/quickstart/python
-    # Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
-    # stored credentials.
 
     event = {
     'summary': eventName,
-    'location': '800 Howard St., San Francisco, CA 94103',
-    'description': 'A chance to hear more about Google\'s developer products.',
+    'location': '',
+    'description': '',
     'start': {
         'dateTime': date.isoformat(),
         'timeZone': 'America/Los_Angeles',
