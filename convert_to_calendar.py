@@ -75,28 +75,36 @@ def convertToCalendar(cal):
         #searches for the month in the string using monthShort
         for i in range(len(monthShort)):
             
+            #convert string to lowercase before searching for months
             calDelIndex = cal.lower().find(monthShort[i])
             calDelIndex2= cal.lower().find(monthLong[i])
+
+            #replace the month
             if calDelIndex != -1:
                 Calendar = Calendar.replace(month=(i+1))
                 index=i
-
-#                    cal = cal[calDelIndex2 : calDelIndex2 + len(monthLong[i])]
-#            else:
-#                cal = cal[ calDelIndex1 : calDelIndex1 + len(monthShort[i]) ]
-
                 break
-    #need to account for months in numeric form
+        
+        # looks for the day. If the date is 16 would find 1 first, but then find 16 later and day would be set to 16
         for i in range(1,dates[index]+1):
+            
+            #looks for dates with a space before and after or at the end or beginning of string
             if cal.find(" "+str(i)+" ") != -1 or cal.find(" " + str(i)) != -1 and (cal.find(" "+str(i)) + 1 + len(str(i))) < len(cal) or cal.find(str(i)+" ") != -1 and (cal.find(str(i)+" ") + 1 + len(str(i))) < len(cal) :
+                
+                #changes the day
                 Calendar = Calendar.replace(day=i)
                 dateDelIndex = cal.find(str(i))
 
+    #searches for the year starting from 2000
     for i in range (2000, today.year+1):
         yearDelIndex = cal.find(str(i))
         if yearDelIndex != -1:
             Calendar = Calendar.replace(year=i)
-    #note we need to do more to account for start and end date. We are using start date
+    
+
+    # looks for time by looking for pm and then am. 
+    # if there are two times, currently this finds the start time. 
+    # if there is a time at am and pm. It will choose the am as the start time.
     if cal.lower().find("pm") != -1:
         timeIndex = find_n(cal, ' ', cal.lower().find("pm"))
         Calendar = Calendar.replace(hour=12)
@@ -109,13 +117,17 @@ def convertToCalendar(cal):
     if cal.lower().find("a.m") != -1:
         timeIndex = find_n(cal, ' ', cal.lower().find("a.m"))
         Calendar = Calendar.replace(hour=0)
+
+    #checks if the time index is not out of bounds and string is numeric
     if timeIndex != -1 and timeIndex < len(cal) and cal[timeIndex].isnumeric():
         Calendar = Calendar.replace(hour = (Calendar.hour + int(cal[timeIndex])))
 
+    #searches for day
     for day in days:
         if cal.lower().find(day) != -1:
            day_index = cal.lower().find(day)
 
+    #sets the eventName to the shortest string created from cal using the various indexes
     if timeIndex >= 0 and len(cal[:timeIndex]) < len(eventName):
         eventName=cal[0:timeIndex]
     if calDelIndex >= 0 and len(cal[:calDelIndex]) < len(eventName):
@@ -130,6 +142,7 @@ def convertToCalendar(cal):
     return Calendar, eventName
 
 # finds the instance of searchterm in bigstring that is before index n and the closest to index n
+# returns the index of the searchterm
 def find_n(bigstring, searchterm, n):
     start = bigstring.find(searchterm)+1
     while start >= 0:
