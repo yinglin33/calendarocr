@@ -3,11 +3,11 @@ from PIL import Image
 import re
 
 def convertToCalendar(cal):
-    months_short=[" jan"," feb"," mar"," apr"," may"," jun"," jul"," aug"," sep"," oct"," nov"," dec"]
+    months_short=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
     dates =[31,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     months_long = ["january","february","march","april","may","june","july","august","september","october","november","december" ]
     days = [" mon", " tues", " wed", " thur", " fri"]
-    #todo account for leap years for feburary 
+    #todo account for leap years for feburary
     today = datetime.datetime.today()
     Calendar= datetime.datetime(today.year, today.month, today.day, 0, 0, 0)
     # the parameters are year, month, day, hour, minutes, seconds
