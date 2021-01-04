@@ -7,7 +7,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 # If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 
 def makeCalendarEvent(date, eventName):
@@ -45,7 +45,7 @@ def makeCalendarEvent(date, eventName):
     'description': 'A chance to hear more about Google\'s developer products.',
     'start': {
         'dateTime': date.isoformat(),
-       # '2015-05-28T09:00:00-07:00'
+        'timeZone': 'America/Los_Angeles',
     },
     'end': {
         'dateTime': date.isoformat(),
@@ -57,4 +57,4 @@ def makeCalendarEvent(date, eventName):
     }
 
     event = service.events().insert(calendarId='primary', body=event).execute()
-    #print 'Event created: %s' % (event.get('htmlLink'))
+    print('Event created: %s' % (event.get('htmlLink')))
