@@ -1,5 +1,5 @@
 import sys
-from image_processing import process_image
+from image_processing import processImage
 import os
 from convert_to_calendar import convertToCalendar
 from make_event import makeCalendarEvent
