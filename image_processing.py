@@ -24,26 +24,26 @@ def processImage(filename, greyscale=0, read=0, blur=0, threshold=0):
         img = cv2.imread(filename)
 
     if blur == 1:
-        img = cv2.blur(img,(5,5))
+        img = cv2.blur(img,(5,5)) #applies averaging
     elif blur == 2:
-        img = cv2.GaussianBlur(img, (5, 5), 0)
+        img = cv2.GaussianBlur(img, (5, 5), 0) #applies gaussian
     elif blur == 3:
-        img = cv2.medianBlur(img, 3)
+        img = cv2.medianBlur(img, 3) #applies median
     elif blur == 4:
-        img = cv.bilateralFilter(img,9,75,75)
+        img = cv.bilateralFilter(img,9,75,75) #applies bilateral filtering
 
     if threshold == 1:
-        ret, img = cv2.threshold(img, 100, 255, cv2.THRESH_BINARY)
+        ret, img = cv2.threshold(img, 100, 255, cv2.THRESH_BINARY) #applies simple thresholding
     elif threshold == 2:
-        img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
+        img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2) #applies adaptive
     elif threshold == 3:
-        img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+        img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1] #applies otsu's thresholding
 
     if read:
         cv2.imshow("image", img) #display image in 600x600
         cv2.waitKey(0) #wait until next key is pressed to exit viewing
 
     # Adding custom options
-    custom_config = '--oem 3 --psm 6'
+    customConfig = '--oem 3 --psm 6'
 
-    return image_to_string(img, config=custom_config)
+    return image_to_string(img, config=customConfig)
