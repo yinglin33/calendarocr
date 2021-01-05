@@ -2,7 +2,7 @@ import sys
 from image_processing import process_image
 import os
 from convert_to_calendar import convertToCalendar
-from quickstart import makeCalendarEvent
+from make_event import makeCalendarEvent
 
 """
 Arguments:
