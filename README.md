@@ -59,6 +59,11 @@ python run.py sampleImage.jpg 1
 ```
 By default run.py keeps the image in the folder if no 2nd parameter is passed
 
+## What to Expect After Running: 
+1. A page will open in your default browser, prompting you to choose a Google account that you want to link this application to.
+2. Go through the prompted authorization process to allow the application access to your Google Calendar, and then you can close the tab or window. 
+3. A message should pop up, saying "Event created", followed by a link of the newly created event.
+
 ## Inspiration For Calendarocr:
 
 **Storytime:**
