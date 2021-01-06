@@ -64,11 +64,6 @@ By default run.py keeps the image in the folder if no 2nd parameter is passed
 2. Allow the application access to your Google Calendar when prompted, and then close the tab or window. 
 3. A message should pop up, saying "Event created", followed by a link of the newly created event.
 
-## Inspiration For Calendarocr:
-
-**Storytime:**
-In my first year of college, I was determined to improve my time management with Google Calendar. However, I was extremely reluctant to type out all the events in Google Calendar. This project was born of that laziness. 
-
 ## Additional Features We Are Working On
 - processing a folder of images
 - processing mutiple images
