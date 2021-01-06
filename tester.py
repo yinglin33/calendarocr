@@ -13,6 +13,9 @@ Running the tester.py file:
         3: blur (0: no blur, 1: averaging, 2: gaussian, 3: median, 4: bilateral filtering)
         4: threshold (0: no blur, 1: simple, 2: adaptive, 3: otsu's)
 
+Example: python3 tester.py 1 1 1 1
+=> with greyscale, read file, averaging, and simple threshold
+
 IMPORTANT: greyscale is needed to apply threshold
 """
 
@@ -27,14 +30,15 @@ def difference(greyscale, read, blur, threshold):
 
     processed = processImage('sampleImage.jpg', greyscale, 1,
                 blur, threshold).lower().strip()
-    problem_list = []
+    problem_list = [] #list to hold all differences in text
 
     """
     Uses difflib to check how many differences there are between the original,
     correct string and the string processed using ocr.
     """
     for x, y in enumerate(difflib.ndiff(TEXT.lower().strip(), processed)):
-        if y[0] == ' ': continue
+        if y[0] == ' ':
+            continue
         elif y[0] == '-':
             problem_list.append('Delete "{}" from position {}'.format(y[-1], x))
         elif y[0] == '+':
