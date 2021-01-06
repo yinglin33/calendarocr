@@ -39,9 +39,9 @@ def processImage(filename, greyscale=0, read=0, blur=0, threshold=0):
     elif threshold == 3:
         img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1] #applies otsu's thresholding
 
-#    if read:
-#        cv2.imshow("image", img) #display image in 600x600
-#        cv2.waitKey(0) #wait until next key is pressed to exit viewing
+    if read:
+        cv2.imshow("image", img) #display image in 600x600
+        cv2.waitKey(0) #wait until next key is pressed to exit viewing
 
     # Adding custom options
     customConfig = '--oem 3 --psm 6'
