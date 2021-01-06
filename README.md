@@ -64,3 +64,11 @@ By default run.py keeps the image in the folder if no 2nd parameter is passed
 **Storytime:**
 In my first year of college, I was determined to improve my time management with Google Calendar. However, I was extremely reluctant to type out all the events in Google Calendar. This project was born of that laziness. 
 
+## Additional Features We Are Working On
+- processing a folder of images
+- processing mutiple images
+- parameters that set the reminder of the event
+- recognize start and end time of events
+- fix bugs with recognizing incorrect date information
+- able to read location of event
+- Convert calendarocr to phone app form for easy use
