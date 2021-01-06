@@ -1,38 +1,39 @@
 import datetime
 from PIL import Image
 import re
+
 '''
-Takes a string (cal) and looks for month, date, time, and event name in the string. Returns a string 
+Takes a string (cal) and looks for month, date, time, and event name in the string. Returns a string
 containing the event name and Datetime object containing the month, date, time.
 '''
 
-''' 
+'''
 TODO change convertToCalendar so it returns the time interval of the event
      todo account for leap years for feburary
      might be a good idea to remove spaces from string to help with processing
 '''
 
 def convertToCalendar(cal):
-    
+
     #lists containing date keywords
     monthShort=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
     dates =[31,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     monthLong = ["january","february","march","april","may","june","july","august","september","october","november","december" ]
     days = [" mon", " tues", " wed", " thur", " fri"]
-    
+
     #list containing regex expressions for dates in the form of XX/XX/XXXX
     possibleDateRegex = ["[0-1][0-9]/[0-3][0-9]/[0-9][0-9][0-9][0-9]", "[1-9]/[0-3][0-9]/[0-9][0-9][0-9][0-9]", "[0-1][0-9]/[1-9]/[0-9][0-9][0-9][0-9]", "[1-9]/[1-9]/[0-9][0-9][0-9][0-9]", "[0-1][0-9]/[0-3][0-9]/[0-9][0-9]", "[1-9]/[0-3][0-9]/[0-9][0-9]", "[0-1][0-9]/[1-9]/[0-9][0-9]", "[1-9]/[1-9]/[0-9][0-9]", "[0-1][0-9]/[0-3][0-9]", "[1-9]/[0-3][0-9]", "[0-1][0-9]/[1-9]", "[1-9]/[1-9]" ]
- 
+
     #Creates datetime object based on today's time
     today = datetime.datetime.today()
     # made default datetime object using today's time
     #the parameters are year, month, day, hour, minutes, seconds
     Calendar= datetime.datetime(today.year, today.month, today.day, 0, 0, 0)
-    
-    #default event name   
+
+    #default event name
     eventName = cal
 
-    #tracks if the date is in regex form or XX/XX/XXXX 
+    #tracks if the date is in regex form or XX/XX/XXXX
     dateNotRegex = True
 
     index= -1
@@ -41,10 +42,10 @@ def convertToCalendar(cal):
     calDelIndex = -1
     dateDelIndex= -1
     yearDelIndex = -1
-    timeIndex = -1 
+    timeIndex = -1
     day_index = -1
-    
-    #searches for matches from possibleDateRegex backwards. 
+
+    #searches for matches from possibleDateRegex backwards.
     #This is because regex's at the end of the list are substrings of regex's at the beginning
     for i in range( len(possibleDateRegex)-1, -1, -1):
         x = re.findall(possibleDateRegex[i], cal)
@@ -56,11 +57,11 @@ def convertToCalendar(cal):
 
             #splits the match into month, day, year
             info=x[0].split("/")
-            
+
             #replaces month and day
             Calendar = Calendar.replace(month = int(info[0]))
             Calendar = Calendar.replace(day = int(info[1]))
-            
+
             # replaces year based on if year was represented with 4 numbers or 2 numbers
             # ex : 1/1/2021 vs 1/1/21
             # if there was no year in the date year stays the same
@@ -74,7 +75,7 @@ def convertToCalendar(cal):
 
         #searches for the month in the string using monthShort
         for i in range(len(monthShort)):
-            
+
             #convert string to lowercase before searching for months
             calDelIndex = cal.lower().find(monthShort[i])
             calDelIndex2= cal.lower().find(monthLong[i])
@@ -84,13 +85,13 @@ def convertToCalendar(cal):
                 Calendar = Calendar.replace(month=(i+1))
                 index=i
                 break
-        
+
         # looks for the day. If the date is 16 would find 1 first, but then find 16 later and day would be set to 16
         for i in range(1,dates[index]+1):
-            
+
             #looks for dates with a space before and after or at the end or beginning of string
             if cal.find(" "+str(i)+" ") != -1 or cal.find(" " + str(i)) != -1 and (cal.find(" "+str(i)) + 1 + len(str(i))) < len(cal) or cal.find(str(i)+" ") != -1 and (cal.find(str(i)+" ") + 1 + len(str(i))) < len(cal) :
-                
+
                 #changes the day
                 Calendar = Calendar.replace(day=i)
                 dateDelIndex = cal.find(str(i))
@@ -100,10 +101,10 @@ def convertToCalendar(cal):
         yearDelIndex = cal.find(str(i))
         if yearDelIndex != -1:
             Calendar = Calendar.replace(year=i)
-    
 
-    # looks for time by looking for pm and then am. 
-    # if there are two times, currently this finds the start time. 
+
+    # looks for time by looking for pm and then am.
+    # if there are two times, currently this finds the start time.
     # if there is a time at am and pm. It will choose the am as the start time.
     if cal.lower().find("pm") != -1:
         timeIndex = find_n(cal, ' ', cal.lower().find("pm"))

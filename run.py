@@ -1,8 +1,8 @@
 import sys
-from image_processing import processImage
+from imageProcessing import processImage
 import os
-from convert_to_calendar import convertToCalendar
-from make_event import makeCalendarEvent
+from convertToCalendar import convertToCalendar
+from makeEvent import makeCalendarEvent
 
 """
 Arguments when running the file:
@@ -13,18 +13,18 @@ Example: python3 run.py sample_image.jpg 1
 => creates the calendar event and deletes the image after
 """
 
-processed_string = ""
+processedString = ""
 
 if len(sys.argv) == 2: #if one argument is given after file name in run command
-    processed_string = process_image(sys.argv[1], 1, 0, 1, 3)
+    processedString = processImage(sys.argv[1], 1, 0, 1, 3)
 elif len(sys.argv) == 3: #if two arguments are given after file name in run command
-    processed_string = process_image(sys.argv[1], 1, 0, 1, 3)
+    processedString = processImage(sys.argv[1], 1, 0, 1, 3)
     if (sys.argv[2] == "1"):
         os.remove(sys.argv[1]) #removes the file from the working directory
 else:
     print("Please enter the correct amount of arguments.")
     sys.exit()
 
-date, name = convertToCalendar(processed_string)
+date, name = convertToCalendar(processedString)
 
 makeCalendarEvent(date, name)
