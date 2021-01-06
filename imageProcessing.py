@@ -15,8 +15,9 @@ def processImage(filename, greyscale=0, read=0, blur=0, threshold=0):
         threshold: 1 (simple), 2 (adaptive), 3 (otsu's)
     """
 
-    cv2.namedWindow("image", cv2.WINDOW_NORMAL)
-    cv2.resizeWindow('image', 600,600)
+    #UNCOMMENT TO HELP WITH RUNNING TESTER
+    #cv2.namedWindow("image", cv2.WINDOW_NORMAL)
+    #cv2.resizeWindow('image', 600,600)
 
     if greyscale:
         img = cv2.imread(filename, 0) #the 0 converts the image greyscale
@@ -39,9 +40,11 @@ def processImage(filename, greyscale=0, read=0, blur=0, threshold=0):
     elif threshold == 3:
         img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1] #applies otsu's thresholding
 
-    if read:
-        cv2.imshow("image", img) #display image in 600x600
-        cv2.waitKey(0) #wait until next key is pressed to exit viewing
+
+    #UNCOMMENT TO HELP WITH RUNNING TESTER
+    #if read:
+        #cv2.imshow("image", img) #display image in 600x600
+        #cv2.waitKey(0) #wait until next key is pressed to exit viewing
 
     # Adding custom options
     customConfig = '--oem 3 --psm 6'
