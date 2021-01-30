@@ -76,12 +76,12 @@ If you are running calendarocr the first time, you will need to authenticate wit
 
 Passing the parameter 0 will keep the image in the folder
 ```
-python run.py sampleImage.jpg 0
+python3 run.py sampleImage.jpg 0
 ```
 
 Passing the parameter 1 will delete the image from the folder
 ```
-python run.py sampleImage.jpg 1
+python3 run.py sampleImage.jpg 1
 ```
 By default run.py keeps the image in the folder if no 2nd parameter is passed
 
