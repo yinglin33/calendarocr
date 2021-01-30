@@ -68,7 +68,7 @@ Place that file in your downloaded repository of calendarOCR.
 4. Execute the following command in the same folder as calendarocr
 
 ```
-python run.py sampleImage.jpg
+python3 run.py sampleImage.jpg
 ```
 If you are running calendarocr the first time, you will need to authenticate with Google Sign In first.
 
